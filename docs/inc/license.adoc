@@ -1,0 +1,9 @@
+== Company license that you can include at the end of every document
+// Load variables from another file
+include::variables.adoc[]
+
+// Only put the following text into the doc if the condition is true
+ifeval::[{Include_license} == "true"]
+// Variable stubstitution
+{Company_name} {Copyright_year}
+endif::[]

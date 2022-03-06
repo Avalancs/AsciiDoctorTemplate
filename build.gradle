@@ -1,0 +1,59 @@
+// https://asciidoctor.github.io/asciidoctor-gradle-plugin/development-3.x/user-guide
+plugins {
+    id 'org.asciidoctor.jvm.convert' version '3.2.0'
+    id 'org.asciidoctor.jvm.pdf' version '3.2.0'
+}
+
+group 'org.test.asciidoctor'
+
+repositories {
+    mavenCentral()
+}
+
+asciidoctor {
+    // when including files, consider the baseDir to be the file's location
+    // (consistent with how the AsciiDoc plugin works)
+    baseDirFollowsSourceFile()
+    // make a HTML page from files in the doc folder (but not the subfolders)
+    setSourceDir(file('docs'))
+}
+
+asciidoctorPdf {
+    // when including files, consider the baseDir to be the file's location
+    // (consistent with how the AsciiDoc plugin works)
+    baseDirFollowsSourceFile()
+    // make PDFs' from files in the doc folder (but not the subfolders)
+    setSourceDir(file('docs'))
+}
+
+asciidoctorj {
+    // Needed for embedding diagrams when generating html+pdf with gradle
+    // The plugin already has this functionality
+    modules {
+        diagram.use()
+        diagram.version '2.2.1'
+    }
+
+    // attributes for the generation of html+pdf from gradle
+    attributes(
+        'build-gradle': file('build.gradle'),
+        'sourcedir': asciidoctor.getSourceDir().absolutePath,
+
+        // which side is the Table of Contents at (in the HTML version)?
+        // 'left' or 'right' displays it at the side of the window, and it remains there when scrolling
+        // 'top' puts it at the top of the document, does not remain there when scrolling
+        'toc': 'left',
+
+        'icons': 'font',
+        'idprefix': '',
+        'idseparator': '-'
+    )
+}
+
+/*
+// if you need the contents of additional directories to be copied to the html page,
+// not just docs/* you can add them here
+resources {
+    from(file('additionalFolder'))
+}
+*/

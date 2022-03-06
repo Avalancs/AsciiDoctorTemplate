@@ -1,0 +1,3 @@
+:Company_name: Innodox kft.
+:Copyright_year: 2022
+:Include_license: true
