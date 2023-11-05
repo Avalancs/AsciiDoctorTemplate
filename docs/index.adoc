@@ -169,7 +169,7 @@ graph TD
 ////
 
 // checking the Hunspell plugin with downloaded Hungarian dictionary
-Magyar nyelv helyes írás Ööööö Hüllő
+Testing Hungarin characters: Magyar nyelv helyes írás Ööööö Hüllő keringőzünk, teniszütő
 
 // Three arrows to the left means line break in PDF
 <<<
